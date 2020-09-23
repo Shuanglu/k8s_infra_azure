@@ -1,4 +1,12 @@
 Provision a k8s cluster with below:
 - Terraform for deploying resource on Azure
+  - Shared resource:
+    - Vnet: k8s-vnet
+    - UserAssignedIdentity: k8s-uai
+  - Baston:
+    - subnet: k8s-baston-subnet
+    - nsg: k8s-baston-nsg
+    - nic: k8s-baston-nic
+    - VM: k8s-baston
 - Kubeadm for building a k8s cluster
 - Calico for building Container Networking
