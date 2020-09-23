@@ -17,7 +17,7 @@ Provision a k8s cluster with below:
     - Public IP: k8s-master-pip
     - Loadbalancer: k8s-master-lb
     - VMSS: k8s-master
-   - Agent:
+  - Agent:
     - Subnet: k8s-agent-subnet
     - Nsg: k8s-agent-nsg
       - Allow Inbound port 22
