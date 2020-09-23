@@ -105,7 +105,7 @@ resource "azurerm_virtual_machine_scale_set" "k8s_m" {
   os_profile {
     computer_name_prefix = "k8s-m"
     admin_username       = "testshuang"
-	admin_password       = "Shangkun~0527"
+	admin_password       = "*****"
   }
 
   network_profile {
