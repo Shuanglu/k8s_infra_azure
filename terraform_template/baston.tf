@@ -12,17 +12,20 @@ resource "azurerm_network_security_group" "k8s_bnsg" {
   location            = azurerm_resource_group.k8s_infra.location
   resource_group_name = azurerm_resource_group.k8s_infra.name
   
-  security_rule {
-    name                       = "SSH"
-    priority                   = 101
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
+}
+
+resource "azurerm_network_security_rule" "k8s_bnsgr" {
+  name                       = "SSH"
+  priority                   = 101
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "22"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  resource_group_name         = azurerm_resource_group.k8s_infra.name
+  network_security_group_name = azurerm_network_security_group.k8s_bnsg.name
 }
 
 resource "azurerm_public_ip" "k8s_bpip" {

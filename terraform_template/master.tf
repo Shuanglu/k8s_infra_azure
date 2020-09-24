@@ -12,17 +12,6 @@ resource "azurerm_network_security_group" "k8s_mnsg" {
   location            = azurerm_resource_group.k8s_infra.location
   resource_group_name = azurerm_resource_group.k8s_infra.name
 
-  security_rule {
-    name                       = "apiserver"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "443"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "k8s_msubnet_nsg" {
@@ -105,7 +94,7 @@ resource "azurerm_virtual_machine_scale_set" "k8s_m" {
   os_profile {
     computer_name_prefix = "k8s-m"
     admin_username       = "testshuang"
-	admin_password       = "*****"
+	  admin_password       = "WorldPeace2020"
   }
 
   network_profile {
