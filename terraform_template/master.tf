@@ -92,7 +92,7 @@ resource "azurerm_virtual_machine_scale_set" "k8s_m" {
   }
 
   os_profile {
-    computer_name_prefix = "k8s-m"
+    computer_name_prefix = "k8s-master"
     admin_username       = "testshuang"
 	  admin_password       = "WorldPeace2020"
   }
