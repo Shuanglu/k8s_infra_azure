@@ -1,8 +1,8 @@
 #!/bin/bash
 
 k8s_install() {
-  cmd=$(lsmod | grep br_netfilter)
-  if [ -z "$cmd" ]; then
+  command=$(lsmod | grep br_netfilter)
+  if [ -z "$command" ]; then
     modprobe br_netfilter
   fi
   if [ -s "/etc/sysctl.d/k8s.conf" ]; then
