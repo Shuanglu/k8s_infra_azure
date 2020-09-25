@@ -14,6 +14,21 @@ resource "azurerm_network_security_group" "k8s_mnsg" {
 
 }
 
+
+resource "azurerm_network_security_rule" "k8s_mnsgr" {
+  name                       = "HTTPS"
+  priority                   = 101
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "443"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  resource_group_name         = azurerm_resource_group.k8s_infra.name
+  network_security_group_name = azurerm_network_security_group.k8s_mnsg.name
+}
+
 resource "azurerm_subnet_network_security_group_association" "k8s_msubnet_nsg" {
   subnet_id                 = azurerm_subnet.k8s_msubnet.id
   network_security_group_id = azurerm_network_security_group.k8s_mnsg.id
@@ -61,6 +76,8 @@ resource "azurerm_lb_rule" "k8s_mlb_r" {
   frontend_port                  = 443
   backend_port                   = 6443
   frontend_ip_configuration_name = "k8s-master-pip"
+  probe_id                       = azurerm_lb_probe.k8s_mlb_p.id
+  backend_address_pool_id        = azurerm_lb_backend_address_pool.k8s_mlb_bep.id
 }
 
 
