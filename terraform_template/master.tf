@@ -22,7 +22,7 @@ resource "azurerm_network_security_rule" "k8s_mnsgr" {
   access                     = "Allow"
   protocol                   = "Tcp"
   source_port_range          = "*"
-  destination_port_range     = "443"
+  destination_port_range     = "6443"
   source_address_prefix      = "*"
   destination_address_prefix = "*"
   resource_group_name         = azurerm_resource_group.k8s_infra.name
