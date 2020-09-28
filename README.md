@@ -13,6 +13,7 @@ Provision a k8s cluster with below:
   - Master:
     - Subnet: k8s-master-subnet
     - Nsg: k8s-master-nsg
+      - Allow Inbound port 6443
     - Public IP: k8s-master-pip
     - Loadbalancer: k8s-master-lb
     - VMSS: k8s-master

@@ -4,6 +4,7 @@
   "subscriptionId": "886ee2a4-e790-43c5-bfa4-5c8db2e433f6",
   "resourceGroup": "k8s-infra",
   "location": "westus2",
+  "vmType": "vmss",
   "subnetName": "k8s-agent-subnet",
   "securityGroupName": "k8s-agent-nsg",
   "vnetName": "k8s-vnet",
@@ -11,6 +12,6 @@
   "primaryScaleSetName": "k8s-agent",
   "cloudProviderBackoff": false,
   "useManagedIdentityExtension": true,
-  "userAssignedIdentityID": "62b3aa5d-6293-4ddf-b8c5-1c0fbd247adf",
+  "userAssignedIdentityID": "d5f23c2b-5ade-46df-a61e-d9352f61163c",
   "useInstanceMetadata": true
 }

@@ -11,6 +11,9 @@ for i in `ls /var/log/scripts/func/*.sh`;
 do
     source $i
 done
-containerd > /var/log/scripts/initilization.log 2>&1
-k8s_install > /var/log/scripts/initilization.log 2>&1
-k8s_conf > /var/log/scripts/initilization.log 2>&1
+echo 'Prepare to install containerd'
+containerd
+echo 'Prepare to install k8s'
+k8s_install
+echo 'Prepare to configure k8s'
+k8s_conf
