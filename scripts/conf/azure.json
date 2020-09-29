@@ -7,6 +7,7 @@
   "vmType": "vmss",
   "subnetName": "k8s-agent-subnet",
   "securityGroupName": "k8s-agent-nsg",
+  "routeTableName": "k8s-infra-routetable",
   "vnetName": "k8s-vnet",
   "vnetResourceGroup": "k8s-infra",
   "primaryScaleSetName": "k8s-agent",

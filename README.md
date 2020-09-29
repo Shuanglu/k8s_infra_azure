@@ -27,3 +27,6 @@ Provision a k8s cluster with below:
 - Kubeadm for building a k8s cluster
 
 - Calico for building Container Networking
+
+
+Provision.sh -> scripts/main.sh -> containerd.sh -> k8s_install.sh -> k8s_conf_master.sh/k8s_conf_agent.sh -> calico.sh
