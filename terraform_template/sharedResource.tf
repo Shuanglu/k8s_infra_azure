@@ -6,8 +6,8 @@ provider "azurerm" {
 
 # Create a resource group
 resource "azurerm_resource_group" "k8s_infra" {
-  name     = "k8s-infra"
-  location = "West US 2"
+  name     = var.resource_group_name
+  location = var.location
 }
 
 resource "azurerm_user_assigned_identity" "k8s_uai" {
