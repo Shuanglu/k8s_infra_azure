@@ -1,20 +1,39 @@
+variable "baston_domain_name_label" {
+  type        = string
+  description = "The name of the apiserver fqdn. Please follow the link https://docs.microsoft.com/en-us/rest/api/virtualnetwork/checkdnsnameavailability/checkdnsnameavailability to check the availability"
+  default = "k8s-baston-pip"
+}
+
+variable "publickey_path" {
+  type        = string
+  description = "The path of the public key."
+  default = "~/.ssh/id_rsa.pub"
+}
+
+variable "baston_vm_name" {
+  type        = string
+  description = "The name of the baston vm. Name requirement: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#microsoftcompute"
+  default = "k8s-baston"
+
+}
+
 # Create a subnet within the vnet
-resource "azurerm_subnet" "k8s_bsubnet" {
-  name                 = "k8s-baston-subnet"
-  resource_group_name  = azurerm_resource_group.k8s_infra.name
-  virtual_network_name = azurerm_virtual_network.k8s_vnet.name
-  address_prefixes       = ["172.15.0.0/16"]
+resource "azurerm_subnet" "baston_subnet" {
+  name                 = format("%s-subnet", var.baston_vm_name)
+  resource_group_name  = azurerm_resource_group.resource_group.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes       = [element(var.address_space,2)]
 }
 
 # Create a NSG for baston
-resource "azurerm_network_security_group" "k8s_bnsg" {
-  name                = "k8s-baston-nsg"
-  location            = azurerm_resource_group.k8s_infra.location
-  resource_group_name = azurerm_resource_group.k8s_infra.name
+resource "azurerm_network_security_group" "baston_nsg" {
+  name                = format("%s-nsg", var.baston_vm_name)
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
   
 }
 
-resource "azurerm_network_security_rule" "k8s_bnsgr" {
+resource "azurerm_network_security_rule" "baston_nsgr" {
   name                       = "SSH"
   priority                   = 101
   direction                  = "Inbound"
@@ -24,51 +43,51 @@ resource "azurerm_network_security_rule" "k8s_bnsgr" {
   destination_port_range     = "22"
   source_address_prefix      = "*"
   destination_address_prefix = "*"
-  resource_group_name         = azurerm_resource_group.k8s_infra.name
-  network_security_group_name = azurerm_network_security_group.k8s_bnsg.name
+  resource_group_name         = azurerm_resource_group.resource_group.name
+  network_security_group_name = azurerm_network_security_group.baston_nsg.name
 }
 
-resource "azurerm_public_ip" "k8s_bpip" {
-  name                = "k8s_baston-pip"
-  location            = azurerm_resource_group.k8s_infra.location
-  resource_group_name = azurerm_resource_group.k8s_infra.name
+resource "azurerm_public_ip" "baston_pip" {
+  name                = format("%s-pip", var.baston_vm_name)
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
   allocation_method   = "Static"
-  domain_name_label   = "k8s-baston-pip"
+  domain_name_label   = var.baston_domain_name_label
 }
 
 #Create a network interface for the baston VM
-resource "azurerm_network_interface" "k8s_baston_nic" {
-  name                = "k8s-baston-nic"
-  location            = azurerm_resource_group.k8s_infra.location
-  resource_group_name = azurerm_resource_group.k8s_infra.name
+resource "azurerm_network_interface" "baston_nic" {
+  name                = format("%s-nic", var.baston_vm_name)
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
 
   ip_configuration {
     name                          = "public"
-    subnet_id                     = azurerm_subnet.k8s_bsubnet.id
-	private_ip_address_allocation = "Dynamic"
-	public_ip_address_id          = azurerm_public_ip.k8s_bpip.id
+    subnet_id                     = azurerm_subnet.baston_subnet.id
+	  private_ip_address_allocation = "Dynamic"
+	  public_ip_address_id          = azurerm_public_ip.baston_pip.id
   }
 }
 
-resource "azurerm_subnet_network_security_group_association" "k8s_bsubnet_nsg" {
-  subnet_id                 = azurerm_subnet.k8s_bsubnet.id
-  network_security_group_id = azurerm_network_security_group.k8s_bnsg.id
+resource "azurerm_subnet_network_security_group_association" "baston_subnet_nsg" {
+  subnet_id                 = azurerm_subnet.baston_subnet.id
+  network_security_group_id = azurerm_network_security_group.baston_nsg.id
 }
 
 #Create a baston VM
-resource "azurerm_linux_virtual_machine" "k8s_baston" {
-  name                = "k8s-baston"
-  resource_group_name = azurerm_resource_group.k8s_infra.name
-  location            = azurerm_resource_group.k8s_infra.location
+resource "azurerm_linux_virtual_machine" "baston" {
+  name                = var.baston_vm_name
+  resource_group_name = azurerm_resource_group.resource_group.name
+  location            = azurerm_resource_group.resource_group.location
   size                = "Standard_B1ls"
-  admin_username      = "testshuang"
+  admin_username      = var.admin_username
   network_interface_ids = [
-    azurerm_network_interface.k8s_baston_nic.id
+    azurerm_network_interface.baston_nic.id
   ]
 
   admin_ssh_key {
-    username   = "testshuang"
-    public_key = file("~/.ssh/id_rsa.pub")
+    username   = var.admin_username
+    public_key = file(var.publickey_path)
   }
 
   os_disk {

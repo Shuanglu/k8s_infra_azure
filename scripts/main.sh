@@ -1,5 +1,10 @@
 #!/bin/bash
 
+token=$1
+master_fqdn=$2
+scriptblob=$3
+confblob=$4
+first=$5
 #set -x
 if [ -f /var/log/scripts/provision.complete ]; then
   exit 0
@@ -17,17 +22,12 @@ echo 'Prepare to install k8s'
 k8s_install
 
 echo 'Prepare to configure k8s'
-token=$1
-echo $token
-echo $2
-master_fqdn=$2
-echo $master_fqdn
-ca_hash=$5
+
 hostname=`hostname`
 validation=`echo $hostname | grep -o 'k8s-master'`
 if [ "$validation" == "k8s-master" ]; then
   echo 'Prepare kubeadm'
-  k8s_conf_master $token $master_fqdn
+  k8s_conf_master $token $master_fqdn $scriptblob$sas $confblob$sas $first
   echo 'Prepare to install calico'
   install_calico
 fi
@@ -36,6 +36,6 @@ validation=`echo $hostname | grep -o 'k8s-agent'`
 if [ "$validation" == "k8s-agent" ]; then
   echo 'Prepare kubeadm'
   set -x
-  k8s_conf_agent $token $master_fqdn $ca_hash
+  k8s_conf_agent $token $master_fqdn
   set +x
 fi
