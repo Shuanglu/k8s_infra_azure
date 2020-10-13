@@ -4,7 +4,7 @@ token=$1
 master_fqdn=$2
 scriptblob=$3
 confblob=$4
-first=$5
+nodeType=$5
 #set -x
 if [ -f /var/log/scripts/provision.complete ]; then
   exit 0
@@ -27,7 +27,7 @@ hostname=`hostname`
 validation=`echo $hostname | grep -o 'k8s-master'`
 if [ "$validation" == "k8s-master" ]; then
   echo 'Prepare kubeadm'
-  k8s_conf_master $token $master_fqdn $scriptblob$sas $confblob$sas $first
+  k8s_conf_master $token $master_fqdn $scriptblob $confblob$sas 
   echo 'Prepare to install calico'
   install_calico
 fi
