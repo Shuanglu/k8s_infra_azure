@@ -47,6 +47,12 @@ variable "admin_password" {
   default = "WorldPeace2020"
 }
 
+variable "storageAccount" {
+  type        = string
+  description = "The name of the StorageAccount."
+  default = "k8sinfra"
+}
+
 # Create a resource group
 resource "azurerm_resource_group" "resource_group" {
   name     = var.resource_group_name
@@ -70,4 +76,13 @@ resource "azurerm_role_assignment" "user_assigned_identity_roleassignment" {
   scope                = azurerm_resource_group.resource_group.id
   role_definition_name = "owner"
   principal_id         = azurerm_user_assigned_identity.user_assigned_identity.principal_id
+}
+
+resource "azurerm_storage_account" "storageaccount" {
+  name                     = var.storageAccount
+  resource_group_name      = azurerm_resource_group.resource_group.name
+  location                 = azurerm_resource_group.resource_group.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
 }

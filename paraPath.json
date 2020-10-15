@@ -1,0 +1,21 @@
+{
+  "clientid": "306f2689-10dc-4c03-84af-f3bcba42e5c7",
+  "secret": "Xsw~iut-rn_uuO7~2.9Uh.45Z_6444Y1rJ",
+  "tenant": "715d2561-2f89-4446-bbc9-6daacf798724",
+  "sub": "886ee2a4-e790-43c5-bfa4-5c8db2e433f6",
+  "apiserver": "k8s-master-pip.westus2.cloudapp.azure.com",
+  "resourceGroup": "k8s-infra",
+  "token": "abcdef.0123456789abcdef",
+  "vmss": "k8s-master",
+  "instance": "12",
+  "nodeType": "Master",
+  "storageAccount": "k8sinfra",
+  "scriptContainer": "scripts",
+  "scriptContainer_exist": "Yes",
+  "confContainer": "conf",
+  "confContainer_exist": "Yes",
+  "cleanup": "Yes",
+  "scriptUpload": "Yes",
+  "fcnode": "No"  
+}
+

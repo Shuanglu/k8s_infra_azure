@@ -15,13 +15,13 @@ k8s_conf_agent() {
   rm -rf /etc/kubernetes
   rm -rf /etc/cni
   mkdir -p /etc/kubernetes/
-  cp /var/log/scripts/conf/ca* /etc/kubernetes/pki/
+  #cp /var/log/scripts/conf/pki/ca* /etc/kubernetes/pki/
   cp /var/log/scripts/conf/azure.json /etc/kubernetes/azure.json
-  ca_hash=`openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'`
+  ca_hash=`openssl x509 -pubkey -in ./conf/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'`
 
   echo 'kubeadm join'
   set -x
-  kubeadm join $master_fqdn:443 --token $token --discovery-token-ca-cert-hash sha256:$ca_hash --v=9
+  kubeadm join $master_fqdn:443 --token $token --discovery-token-ca-cert-hash sha256:$ca_hash --v=9 --cri-socket /var/run/containerd/containerd.sock
   set +x
   if [ $? -eq 0 ]; then
     touch /var/log/scripts/provision.complete

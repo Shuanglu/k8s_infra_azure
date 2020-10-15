@@ -1,0 +1,251 @@
+++ continue=0
+++ '[' 0 == 0 ']'
+++ read -p 'Interactive mode(Yes/No)? ' interactive
+Interactive mode(Yes/No)? ++ '[' -z '' ']'
+++ interactive=No
+++ '[' No == Yes ']'
+++ '[' No == No ']'
+++ read -p 'Please input the absolute path of the parameter file ' paraPath
+Please input the absolute path of the parameter file ++ '[' -z '' ']'
+++ paraPath=./paraPath.json
+++ auto ./paraPath.json
+++ paraPath=./paraPath.json
++++ cat ./paraPath.json
++++ jq .clientid
++++ sed 's/"//g'
+++ clientid=306f2689-10dc-4c03-84af-f3bcba42e5c7
++++ cat ./paraPath.json
++++ jq .secret
++++ sed 's/"//g'
+++ secret=Xsw~iut-rn_uuO7~2.9Uh.45Z_6444Y1rJ
++++ cat ./paraPath.json
++++ jq .tenant
++++ sed 's/"//g'
+++ tenant=715d2561-2f89-4446-bbc9-6daacf798724
++++ cat ./paraPath.json
++++ jq .sub
++++ sed 's/"//g'
+++ sub=886ee2a4-e790-43c5-bfa4-5c8db2e433f6
+++ loginAzure 306f2689-10dc-4c03-84af-f3bcba42e5c7 Xsw~iut-rn_uuO7~2.9Uh.45Z_6444Y1rJ 715d2561-2f89-4446-bbc9-6daacf798724 886ee2a4-e790-43c5-bfa4-5c8db2e433f6
+++ clientid=306f2689-10dc-4c03-84af-f3bcba42e5c7
+++ secret=Xsw~iut-rn_uuO7~2.9Uh.45Z_6444Y1rJ
+++ tenant=715d2561-2f89-4446-bbc9-6daacf798724
+++ sub=886ee2a4-e790-43c5-bfa4-5c8db2e433f6
+++ echo 'Logging to Azure. Please wait'
+Logging to Azure. Please wait
+++ az login --service-principal -u 306f2689-10dc-4c03-84af-f3bcba42e5c7 -p Xsw~iut-rn_uuO7~2.9Uh.45Z_6444Y1rJ --tenant 715d2561-2f89-4446-bbc9-6daacf798724
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "715d2561-2f89-4446-bbc9-6daacf798724",
+    "id": "886ee2a4-e790-43c5-bfa4-5c8db2e433f6",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "AryaStark",
+    "state": "Enabled",
+    "tenantId": "715d2561-2f89-4446-bbc9-6daacf798724",
+    "user": {
+      "name": "306f2689-10dc-4c03-84af-f3bcba42e5c7",
+      "type": "servicePrincipal"
+    }
+  }
+]
+++ '[' 0 -eq 0 ']'
+++ az account set -s 886ee2a4-e790-43c5-bfa4-5c8db2e433f6
+++ '[' 0 -eq 0 ']'
+++ echo 'Complete Login process'
+Complete Login process
+++ res=0
+++ '[' 0 -eq 21 ']'
+++ '[' 0 -eq 22 ']'
+++ continue=1
+++ res=0
++++ cat ./paraPath.json
++++ jq .apiserver
++++ sed 's/"//g'
+++ apiserver=k8s-master-pip.westus2.cloudapp.azure.com
++++ cat ./paraPath.json
++++ jq .resourceGroup
++++ sed 's/"//g'
+++ resourceGroup=k8s-infra
++++ cat ./paraPath.json
++++ jq .token
++++ sed 's/"//g'
+++ token=abcdef.0123456789abcdef
+++ tokenValidation abcdef.0123456789abcdef
+++ token=abcdef.0123456789abcdef
+++ '[' -z abcdef.0123456789abcdef ']'
++++ echo abcdef.0123456789abcdef
++++ grep --color=auto -Eo '[a-z0-9]{6}.[a-z0-9]{16}'
+++ tokenValidation=abcdef.0123456789abcdef
+++ '[' -z abcdef.0123456789abcdef ']'
+++ res=0
+++ '[' 0 -eq 23 ']'
+++ continue=1
+++ res=0
++++ cat ./paraPath.json
++++ jq .vmss
++++ sed 's/"//g'
+++ vmss=k8s-master
++++ cat ./paraPath.json
++++ jq .instance
++++ sed 's/"//g'
+++ instance=12
++++ cat ./paraPath.json
++++ jq .nodeType
++++ sed 's/"//g'
+++ nodeType=Master
++++ cat ./paraPath.json
++++ jq .storageAccount
++++ sed 's/"//g'
+++ storageAccount=k8sinfra
+++ sasGeneration k8sinfra
+++ storageAccount=k8sinfra
+++ echo 'Generating the sas token and load it to the script'
+Generating the sas token and load it to the script
++++ date -u -d '30 minutes' +%Y-%m-%dT%H:%MZ
+++ end=2020-10-15T14:12Z
++++ az storage account generate-sas --permissions cdlruwap --account-name k8sinfra --services b --resource-types co --expiry 2020-10-15T14:12Z
+No connection string, account key or sas token found, we will query account keys for your storage account. Please try to use --auth-mode login or provide one of the following parameters: connection string, account key or sas token for your storage account.
+++ sas='"se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D"'
++++ echo -n '"se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D"'
++++ sed 's/"//g'
+++ sas='se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+++ '[' 0 -ne 0 ']'
+++ cat /dev/null
+++ echo 'sas='\''se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'\'''
+++ res=0
+++ '[' 0 -eq 24 ']'
+++ continue=1
+++ res=0
++++ cat ./paraPath.json
++++ jq .scriptContainer
++++ sed 's/"//g'
+++ scriptContainer=scripts
++++ cat ./paraPath.json
++++ jq .scriptContainer_exist
++++ sed 's/"//g'
+++ scriptContainer_exist=Yes
+++ createScriptContainer k8sinfra scripts Yes
+++ storageAccount=k8sinfra
+++ scriptContainer=scripts
+++ scriptContainer_exist=Yes
+++ '[' Yes == Yes ']'
+++ curl -X PUT -H 'x-ms-blob-public-access: blob' -H 'Content-Length: 0' 'https://k8sinfra.blob.core.windows.net/scripts?restype=container&se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0100   230  100   230    0     0     34      0  0:00:06  0:00:06 --:--:--    54100   230  100   230    0     0     34      0  0:00:06  0:00:06 --:--:--    71
+﻿<?xml version="1.0" encoding="utf-8"?><Error><Code>ContainerAlreadyExists</Code><Message>The specified container already exists.
+RequestId:fa7dfea5-701e-0090-65f9-a29977000000
+Time:2020-10-15T13:42:30.5451579Z</Message></Error>+++ cat ./paraPath.json
++++ jq .confContainer
++++ sed 's/"//g'
+++ confContainer=conf
++++ cat ./paraPath.json
++++ jq .confContainer_exist
++++ sed 's/"//g'
+++ confContainer_exist=Yes
+++ createConfContainer k8sinfra conf Yes
+++ storageAccount=k8sinfra
+++ confContainer=conf
+++ confContainer_exist=Yes
+++ '[' Yes == Yes ']'
+++ curl -X PUT -H 'Content-Length: 0' 'https://.blob.core.windows.net/conf?restype=container&se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: .blob.core.windows.net
+++ '[' Master == Master ']'
++++ cat ./paraPath.json
++++ jq .fcnode
++++ sed 's/"//g'
+++ fcnode=No
+++ '[' No == Yes ']'
++++ cat ./paraPath.json
++++ jq .scriptUpload
++++ sed 's/"//g'
+++ scriptUpload=Yes
+++ scriptUploadFunc Yes k8sinfra scripts 'se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+++ scriptUpload=Yes
+++ storageAccount=k8sinfra
+++ scriptContainerscripts
+bash: scriptContainerscripts: command not found
+++ sas='se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+++ '[' Yes == Yes ']'
+++ echo 'Uploading the tar file to blob storage'
+Uploading the tar file to blob storage
+++ tar -cvf script.tar scripts/
+scripts/
+scripts/conf/
+scripts/conf/audit-policy.yaml
+scripts/conf/azure.json
+scripts/conf/certsconf/
+scripts/conf/certsconf/frontend-proxy.conf
+scripts/conf/certsconf/kube-etcd.conf
+scripts/conf/certsconf/kube.conf
+scripts/conf/custom-resources.yaml
+scripts/conf/kubeadm.conf
+scripts/conf/pki/
+scripts/conf/pki/ca.crt
+scripts/conf/pki/ca.key
+scripts/conf/pki/etcd/
+scripts/conf/pki/etcd/ca.crt
+scripts/conf/pki/etcd/ca.key
+scripts/conf/pki/front-proxy-ca.crt
+scripts/conf/pki/front-proxy-ca.key
+scripts/conf/pki/sa.key
+scripts/conf/pki/sa.pub
+scripts/conf/tigera-operator.yaml
+scripts/func/
+scripts/func/calico.sh
+scripts/func/containerd.sh
+scripts/func/env.sh
+scripts/func/k8s_conf_agent.sh
+scripts/func/k8s_conf_master.sh
+scripts/func/k8s_install.sh
+scripts/main.sh
+++ curl -X PUT -T ./script.tar -H 'x-ms-blob-type: BlockBlob' 'https://k8sinfra.blob.core.windows.net/scripts/scripts.tar?se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0100  240k    0     0  100  240k      0  32890  0:00:07  0:00:07 --:--:-- 49688100  240k    0     0  100  240k      0  30173  0:00:08  0:00:08 --:--:-- 53252
+++ '[' 0 -ne 0 ']'
+++ echo 'Upload successfully'
+Upload successfully
+++ res=0
+++ '[' 0 -eq 26 ']'
+++ '[' 0 -eq 27 ']'
+++ echo 'Upload successfully'
+Upload successfully
+++ continue=1
+++ res=0
+++ '[' Master == Master ']'
+++ execution k8s-infra k8s-master 12 Master k8sinfra scripts conf 'se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D' No
+++ resourceGroup=k8s-infra
+++ vmss=k8s-master
+++ instance=12
+++ nodeType=Master
+++ storageAccount=k8sinfra
+++ scriptContainer=scripts
+++ confContainer=conf
+++ sas='se=2020-10-15T14%3A12Z&sp=rwdlacup&sv=2018-03-28&ss=b&srt=co&sig=41MeccRsSXc2yMTDh883ckiTwxZdrQnX8Pt78RQETyk%3D'
+++ fcnode=No
+++ scriptblob=https://k8sinfra.blob.core.windows.net/scripts/scripts.tar
+++ confblob='https://k8sinfra.blob.core.windows.net/conf/admin.conf?'
+++ az vmss run-command invoke --command-id RunShellScript --scripts 'cd /var/log/; ls script*; if [ 0 -eq 0 ]; then rm -rf scripts*;fi;timeout 30 wget https://k8sinfra.blob.core.windows.net/scripts/scripts.tar --quiet; if [ 0 -ne 0 ]; then echo '\''failed to download'\'' && exit 1;fi; tar -xvf scripts.tar > /dev/null 2>&1 && cd scripts && chmod -R 777 * && bash -c '\''./main.sh abcdef.0123456789abcdef k8s-master-pip.westus2.cloudapp.azure.com https://k8sinfra.blob.core.windows.net/scripts/scripts.tar https://k8sinfra.blob.core.windows.net/conf/admin.conf? Master No'\'' >>/var/log/scripts/initilization.log 2>&1; if [ 0 -eq 0 ];then echo '\''succeed'\''; else echo '\''failed'\'';fi' --parameters abcdef.0123456789abcdef k8s-master-pip.westus2.cloudapp.azure.com https://k8sinfra.blob.core.windows.net/scripts/scripts.tar 'https://k8sinfra.blob.core.windows.net/conf/admin.conf?' No -g k8s-infra -n k8s-master --instance-id 12
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nscripts.tar\n\nscripts:\nconf\nfunc\ninitilization.log\nmain.sh\nsucceed\n\n[stderr]\n",
+      "time": null
+    }
+  ]
+}
+++ '[' 0 -ne 0 ']'
+++ res=0
+++ '[' 0 -eq 0 ']'
+++ echo 'Provision complete.'
+Provision complete.
+++ continue=1
+++ '[' 1 == 0 ']'
