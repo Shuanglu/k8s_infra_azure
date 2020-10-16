@@ -23,7 +23,7 @@ Provision a k8s cluster with below:
     - Public IP: k8s-agent-pip
     - VMSS: k8s-agent
 
-
+![k8s_infra_arch](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/k8s_infra_arch.PNG)
 
 - Kubeadm for building a k8s cluster
 
