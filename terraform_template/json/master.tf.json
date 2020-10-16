@@ -1,0 +1,25 @@
+{
+  "variable": {
+    "master_domain_name_label": {
+      "type": "string",
+      "description": "The name of the apiserver fqdn. Please follow the link https://docs.microsoft.com/en-us/rest/api/virtualnetwork/checkdnsnameavailability/checkdnsnameavailability to check the availability",  
+      "default": "k8s-master-pip"
+    },
+    "master_vmss_name": {
+      "type": "string",
+      "description": "The name of the master vmss. Name requirement: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#microsoftcompute",
+      "default": "k8s-master"
+    }
+  },
+  "resource": {
+    "azurerm_subnet": {
+      "master_subnet": {
+        "name": "${format('%s-subnet', var.master_vmss_name)}",
+        "resource_group_name": "${azurerm_resource_group.resource_group.name}",
+        "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+        "address_prefixes": "${[element(var.address_space,0)]}"
+      }
+    }
+  }
+}
+

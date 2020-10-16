@@ -84,5 +84,5 @@ resource "azurerm_storage_account" "storageaccount" {
   location                 = azurerm_resource_group.resource_group.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-
+  allow_blob_public_access = true
 }
