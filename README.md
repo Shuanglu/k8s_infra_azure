@@ -31,4 +31,4 @@ Provision a k8s cluster with below:
 
 
 Provision.sh -> scripts/main.sh -> containerd.sh -> k8s_install.sh -> k8s_conf_master.sh/k8s_conf_agent.sh -> calico.sh
-![k8s_infra_process](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra.jpg)
+![k8s_infra_process](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra_process.jpg)
