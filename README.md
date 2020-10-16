@@ -23,7 +23,7 @@ Provision a k8s cluster with below:
     - Public IP: k8s-agent-pip
     - VMSS: k8s-agent
 
-![k8s_infra_arch](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/k8s_infra_arch.PNG)
+![k8s_infra_arch](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra_arch.PNG)
 
 - Kubeadm for building a k8s cluster
 
@@ -31,4 +31,4 @@ Provision a k8s cluster with below:
 
 
 Provision.sh -> scripts/main.sh -> containerd.sh -> k8s_install.sh -> k8s_conf_master.sh/k8s_conf_agent.sh -> calico.sh
-![alt text](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra.jpg)
+![k8s_infra_process](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra.jpg)
