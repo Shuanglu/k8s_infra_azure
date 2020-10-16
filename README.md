@@ -21,8 +21,9 @@ Provision a k8s cluster with below:
     - Subnet: k8s-agent-subnet
     - Nsg: k8s-agent-nsg
     - Public IP: k8s-agent-pip
-    - Loadbalancer: k8s-agent-lb
     - VMSS: k8s-agent
+
+
 
 - Kubeadm for building a k8s cluster
 
