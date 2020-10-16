@@ -1,4 +1,5 @@
-Provision a k8s cluster with below:
+[1]
+Provision a k8s cluster on Azurew with below:
 - Terraform for deploying resource on Azure
   - Shared resource:
     - Vnet: k8s-vnet
@@ -25,9 +26,11 @@ Provision a k8s cluster with below:
 
 ![k8s_infra_arch](https://github.com/Shuanglu/k8s_infra_azure/blob/dev/doc/images/k8s_infra_arch.PNG)
 
-- Kubeadm for building a k8s cluster
+[2]
+Kubeadm for building a k8s cluster
 
-- Calico for building Container Networking
+[3]
+Deploy tigera-operator to install of Calico
 
 
 Provision.sh -> scripts/main.sh -> containerd.sh -> k8s_install.sh -> k8s_conf_master.sh/k8s_conf_agent.sh -> calico.sh
