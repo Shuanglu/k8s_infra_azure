@@ -1,1 +1,4 @@
 terraform_template/.terraform
+script.tar
+scripts/conf/env.sh
+privision.log
