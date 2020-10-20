@@ -31,7 +31,7 @@ variable "vnet" {
 
 variable "address_space" {
   type        = list(string)
-  description = "The address space of the VNet including master,agent,baston."
+  description = "The address space of the VNet including master,agent,bastion."
   default = ["172.15.0.0/16","172.16.0.0/16", "172.17.0.0/16"]
 }
 

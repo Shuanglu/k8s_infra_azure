@@ -4,13 +4,13 @@ Provision a k8s cluster on Azurew with below:
   - Shared resource:
     - Vnet: k8s-vnet
     - UserAssignedIdentity: k8s-uai
-  - Baston:
-    - Subnet: k8s-baston-subnet
-    - Nsg: k8s-baston-nsg
+  - Bastion:
+    - Subnet: k8s-bastion-subnet
+    - Nsg: k8s-bastion-nsg
       - Allow Inbound port 22 
-    - Nic: k8s-baston-nic
-    - Public IP: k8s-baston-pip
-    - VM: k8s-baston
+    - Nic: k8s-bastion-nic
+    - Public IP: k8s-bastion-pip
+    - VM: k8s-bastion
   - Master:
     - Subnet: k8s-master-subnet
     - Nsg: k8s-master-nsg
